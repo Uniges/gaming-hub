@@ -1,0 +1,50 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="v1-2-1" author="uniges">
+        <loadData file="data/v1-2-1-test-user-data.csv" relativeToChangelogFile="true" tableName="user">
+            <column name="login" type="STRING" header="true"/>
+            <column name="password" type="STRING" header="true"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="v1-2-2" author="uniges">
+        <loadData file="data/v1-2-2-test-game-data.csv" relativeToChangelogFile="true" tableName="game">
+            <column name="name" type="STRING" header="true"/>
+            <column name="description" type="STRING" header="true"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="v1-2-3" author="uniges">
+        <loadData file="data/v1-2-3-test-currency-data.csv" relativeToChangelogFile="true" tableName="currency">
+            <column name="name" type="STRING" header="true"/>
+            <column name="description" type="STRING" header="true"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="v1-2-4" author="uniges">
+        <loadData file="data/v1-2-4-test-user-game-balance-data.csv" relativeToChangelogFile="true"
+                  tableName="user_game_balance">
+            <column name="name" type="STRING" header="true"/>
+            <column name="description" type="STRING" header="true"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="v1-2-5" author="uniges">
+        <loadData file="data/v1-2-5-test-game-session-data.csv" relativeToChangelogFile="true" tableName="game_session">
+            <column name="name" type="STRING" header="true"/>
+            <column name="description" type="STRING" header="true"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="v1-2-6" author="uniges">
+        <loadData file="data/v1-2-6-test-balance-transaction.csv" relativeToChangelogFile="true"
+                  tableName="balance_transaction">
+            <column name="name" type="STRING" header="true"/>
+            <column name="description" type="STRING" header="true"/>
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>
