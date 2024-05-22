@@ -1,0 +1,9 @@
+FROM gradle:jdk17
+
+# Library cache
+ENV GRADLE_USER_HOME /home/gradle/cache
+
+WORKDIR /app
+
+# Copy all data
+COPY platform-api platform-api
