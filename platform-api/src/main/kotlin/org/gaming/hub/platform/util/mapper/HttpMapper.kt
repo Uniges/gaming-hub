@@ -1,10 +1,8 @@
 package org.gaming.hub.platform.util.mapper
 
-import org.gaming.hub.business.usecase.base.dto.IUserRequestData
 import org.gaming.hub.business.usecase.dto.`in`.CreditUserGameBalanceInDto
 import org.gaming.hub.business.usecase.dto.`in`.DebitUserGameBalanceInDto
 import org.gaming.hub.business.usecase.dto.`in`.GetUserGameBalanceInDto
-import org.gaming.hub.platform.model.business.UserRequestData
 import org.gaming.hub.platform.model.request.UserGameBalanceOperationRequest
 import org.gaming.hub.token.manager.model.TokenClaims
 
@@ -21,7 +19,8 @@ internal fun UserGameBalanceOperationRequest.toDebitUseCaseDto(claims: TokenClai
         userRequestData = claims.toUseCaseDto(),
         gameSessionId = gameSessionId,
         currencyName = currencyType,
-        amount = amount
+        amount = amount,
+        idempotentToken = idempotentToken
     )
 
 internal fun UserGameBalanceOperationRequest.toCreditUseCaseDto(claims: TokenClaims) =
@@ -29,5 +28,6 @@ internal fun UserGameBalanceOperationRequest.toCreditUseCaseDto(claims: TokenCla
         userRequestData = claims.toUseCaseDto(),
         gameSessionId = gameSessionId,
         currencyName = currencyType,
-        amount = amount
+        amount = amount,
+        idempotentToken = idempotentToken
     )

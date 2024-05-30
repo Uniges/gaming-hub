@@ -33,6 +33,9 @@ data class BalanceTransactionEntity(
     @Enumerated(EnumType.STRING)
     val type: BalanceTransactionType,
 
+    @Column(name = "idempotent_token")
+    val idempotentToken: String,
+
     @Column(name = "created_at")
     val createdAt: OffsetDateTime,
 ) {

@@ -39,4 +39,7 @@ data class UserEntity(
 
     @OneToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY, mappedBy = "user")
     var gameSessions: MutableSet<GameSessionEntity> = mutableSetOf()
+
+    @OneToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY, mappedBy = "user")
+    var idempotentTokens: MutableSet<UserIdempotentTokenEntity> = mutableSetOf()
 }

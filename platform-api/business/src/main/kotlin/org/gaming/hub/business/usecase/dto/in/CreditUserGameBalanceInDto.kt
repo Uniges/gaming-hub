@@ -9,5 +9,6 @@ data class CreditUserGameBalanceInDto(
     override val userRequestData: IUserRequestData,
     val gameSessionId: UUID,
     val currencyName: CurrencyType,
-    val amount: Long
+    val amount: Long,
+    val idempotentToken: String
 ) : IUserData

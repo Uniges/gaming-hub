@@ -17,11 +17,8 @@ import org.gaming.hub.platform.util.mapper.toCreditUseCaseDto
 import org.gaming.hub.platform.util.mapper.toDebitUseCaseDto
 import org.gaming.hub.platform.util.mapper.toHttpResponse
 import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import org.springframework.web.context.request.RequestContextHolder
-import org.springframework.web.context.request.ServletRequestAttributes
 import java.util.*
 
 @RestController
@@ -49,8 +46,10 @@ class UserGameBalanceProcessorController(
         gameSessionId: UUID,
         @RequestParam(name = "amount")
         amount: Long = 0L,
+        @RequestParam(name = "idempotent-token")
+        idempotentToken: String = ""
     ): UserGameBalanceOperationResponse {
-        val request = UserGameBalanceOperationRequest(operation, currencyType, gameSessionId,amount)
+        val request = UserGameBalanceOperationRequest(operation, currencyType, gameSessionId, amount, idempotentToken)
         val userClaims = userProvider.getJwtClaims()
         return when (request.operation) {
             UserGameBalanceOperationType.BALANCE ->

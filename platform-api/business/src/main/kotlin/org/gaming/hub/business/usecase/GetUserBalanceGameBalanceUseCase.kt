@@ -8,6 +8,7 @@ import org.gaming.hub.business.usecase.dto.out.UserGameBalanceOutDto
 import org.gaming.hub.business.util.mapper.toOutDto
 import org.gaming.hub.data.access.repository.CurrencyRepository
 import org.gaming.hub.data.access.repository.UserGameBalanceRepository
+import org.gaming.hub.data.access.repository.UserIdempotentTokenRepository
 import org.gaming.hub.data.access.repository.UserRepository
 import org.springframework.stereotype.Service
 
@@ -15,10 +16,12 @@ import org.springframework.stereotype.Service
 internal class GetUserBalanceGameBalanceUseCase(
     userRepository: UserRepository,
     userGameBalanceRepository: UserGameBalanceRepository,
+    userIdempotentTokenRepository: UserIdempotentTokenRepository,
     private val currencyRepository: CurrencyRepository,
 ) : AUserBalanceAwareBusinessUseCase<GetUserGameBalanceInDto, UserGameBalanceOutDto>(
     userRepository = userRepository,
-    userGameBalanceRepository = userGameBalanceRepository
+    userGameBalanceRepository = userGameBalanceRepository,
+    userIdempotentTokenRepository = userIdempotentTokenRepository
 ) {
 
     override fun executeBusiness(input: GetUserGameBalanceInDto): UserGameBalanceOutDto =

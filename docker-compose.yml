@@ -3,58 +3,58 @@ version: "3.9"
 name: 'gaming-hub'
 
 networks:
-  gaming-hub:
+  gaming-hub_s:
     driver: bridge
 services:
-  gradle-builder:
-    container_name: gradle-builder
+  gradle-builder_s:
+    container_name: gradle-builder_s
     build:
       dockerfile: Dockerfile-builder
     networks:
-      - gaming-hub
+      - gaming-hub_s
     volumes:
       - gradle_cache:/home/gradle/cache
       - built_app:/app/jar
     working_dir: /app/platform-api
     command: ["sh", "-c", "gradle clean build && cp /app/platform-api/build/libs/platform-api-1.0.jar -v /app/jar"]
 
-  gaming-hub-server:
-    container_name: gaming-hub-server
+  gaming-hub-server_s:
+    container_name: gaming-hub-server_s
     build:
       dockerfile: Dockerfile-hub
     ports:
       - "8083:8083"
     networks:
-      - gaming-hub
+      - gaming-hub_s
     volumes:
       - gradle_cache:/home/gradle/cache
       - built_app:/app/jar
     working_dir: /app/jar
     command: ["java", "-jar", "/app/jar/platform-api-1.0.jar"]
     depends_on:
-      postgresql_db:
+      postgresql_db_s:
         condition: service_started
-      gradle-builder:
+      gradle-builder_s:
         condition: service_completed_successfully
 
-  postgresql_db:
+  postgresql_db_s:
     image: postgres
-    container_name: postgresql_db
+    container_name: postgresql_db_s
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: user_db
     ports:
-      - "5433:5433"
+      - "5435:5435"
     expose:
-      - "5433"
+      - "5435"
     networks:
-      - gaming-hub
+      - gaming-hub_s
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-    command: -p 5433
+      - postgres_data_s:/var/lib/postgresql/data
+    command: -p 5435
 
 volumes:
   gradle_cache:
   built_app:
-  postgres_data:
+  postgres_data_s:

@@ -3,7 +3,7 @@
 ```
 docker-compose up --build
 ```
-### 2. Swagger for testing (main api is secured by jwt, use test data)
+### 2. Swagger for testing (main api is secured by jwt, use test data), for credit and debit use idempotent tokens
 
 ```
 http://localhost:8083/swagger-ui/index.html

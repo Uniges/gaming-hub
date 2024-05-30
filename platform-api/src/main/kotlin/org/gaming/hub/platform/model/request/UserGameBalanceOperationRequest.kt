@@ -8,5 +8,6 @@ data class UserGameBalanceOperationRequest (
     val operation: UserGameBalanceOperationType,
     val currencyType: CurrencyType,
     val gameSessionId: UUID,
-    val amount: Long = 0L
+    val amount: Long = 0L,
+    val idempotentToken: String = ""
 )
